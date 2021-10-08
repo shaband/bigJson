@@ -1,5 +1,10 @@
 <?php
 
+use App\Services\Reader;
+use App\Services\ReaderAbstract;
+use App\Services\Validator\AgeValidator;
+use App\Services\Validator\ValidationContract;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -60,6 +65,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('database');
+$app->configure('queue');
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +104,8 @@ $app->configure('app');
 $app->register(Laravel\Sail\SailServiceProvider::class);
 $app->register(NunoMaduro\LaravelDesktopNotifier\LaravelDesktopNotifierServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
+$app->withEloquent();
+$app->bind(ReaderAbstract::class, Reader::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -107,7 +116,6 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
-
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {

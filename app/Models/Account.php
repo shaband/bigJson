@@ -2,12 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Rules\ValidAgeRule;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Support\Carbon;
 
 class Account extends Model
 {
@@ -21,11 +18,24 @@ class Account extends Model
     protected $guarded = ['id'];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'date_of_birth'];
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
+            'credit_card'=>'array',
 
-    ];
+        ];
+    public function setDateOfBirthAttribute($date)
+    {
+        if ($date!=null) {
+            $this->attributes['date_of_birth']=  Carbon::parse((new ValidAgeRule)->fixDate($date));
+        }
+    }
 }

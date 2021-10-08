@@ -2,10 +2,14 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Jobs\FileHandler;
+use App\Jobs\AddAcountJob;
 use App\Jobs\InsertJob;
-use Illuminate\Support\Facades\File;
-use \JsonMachine\JsonMachine;
+use App\Models\Account;
+use App\Rules\ValidAgeRule;
+use App\Services\Reader;
+use App\Services\ReaderAbstract;
+use App\Services\Validator\AgeValidator;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +23,5 @@ use \JsonMachine\JsonMachine;
 */
 
 $router->get('/', function () use ($router) {
-    dispatch(new InsertJob());
+    return 'hello';
 });
