@@ -13,7 +13,6 @@
         "halaxa/json-machine": "^0.7.0",
         "illuminate/redis": "^8.63",
         "laravel/lumen-framework": "^8.0",
-        "nunomaduro/laravel-desktop-notifier": "^2.5",
         "predis/predis": "^1.1"
     },
     "require-dev": {

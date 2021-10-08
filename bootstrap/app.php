@@ -102,7 +102,7 @@ $app->configure('queue');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Laravel\Sail\SailServiceProvider::class);
-$app->register(NunoMaduro\LaravelDesktopNotifier\LaravelDesktopNotifierServiceProvider::class);
+
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->withEloquent();
 $app->bind(ReaderAbstract::class, Reader::class);

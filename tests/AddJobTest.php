@@ -1,17 +1,14 @@
 <?php
 
 use App\Jobs\AddAcountJob;
-use App\Models\Account;
-use App\Services\Reader;
+
 use App\Services\ReaderAbstract;
-use App\Services\RecursionContract;
 use Illuminate\Support\Facades\Queue;
 use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
-use Mockery\Mock;
 
-class ExampleTest extends TestCase
+class AddJobTest extends TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
