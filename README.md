@@ -1,24 +1,36 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+# Hello There
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+I Used Lumen For The Task
 
-## Official Documentation
+ ### Setup Application By make this steps open terminal and:-
+ 
+ - ```$   composer install  ```
+ - ``` $ cp .env.example .env ``` 
+ - set your configration for database and queue driver (PS: You Can Use mysql and Redis )
+ - ```$ php artisan migrate```
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+###  Start the operation of the Application 
 
-## Contributing
+ ```$ php artisan db:seed JsonAccountSeeder ``` 
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+this will add the head of the operation then
 
-## Security Vulnerabilities
+```$ php artisan queue:work ```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+this will do all the magic 
 
-## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+You can compelete the operation after you cut off by 
+
+```$ php artisan queue:work ```
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+./vendor/bin/phpunit
+```
