@@ -27,6 +27,8 @@ class AddAcountJob extends Job
      */
     public function handle()
     {
+
+        
         $this->reader->store();
         $this->CreateNext();
     }

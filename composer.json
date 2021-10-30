@@ -10,10 +10,13 @@
     "type": "project",
     "require": {
         "php": "^8.0",
+        "box/spout": "^3.3",
         "halaxa/json-machine": "^0.7.0",
         "illuminate/redis": "^8.63",
         "laravel/lumen-framework": "^8.0",
-        "predis/predis": "^1.1"
+        "phpoffice/phpspreadsheet": "^1.18",
+        "predis/predis": "^1.1",
+        "spatie/simple-excel": "^1.14"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
