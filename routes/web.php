@@ -2,14 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Jobs\AddAcountJob;
-use App\Jobs\InsertJob;
-use App\Models\Account;
-use App\Rules\ValidAgeRule;
-use App\Services\Reader;
-use App\Services\ReaderAbstract;
-use App\Services\Validator\AgeValidator;
-use Illuminate\Support\Facades\Validator;
+use App\Services\ExcelReader;
+use Spatie\SimpleExcel\SimpleExcelReader;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +16,19 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
-$router->get('/', function () use ($router) {
-    return 'hello';
-});
+$router->get(
+    '/',
+    function () use ($router) {
+
+    /*
+     "credit_card/type" => "Visa"
+  "credit_card/number" => "4532383564703"
+  "credit_card/name" => "Brooks Hudson"
+  "credit_card/expirationDate" => "12/19"
+   */
+        $s=SimpleExcelReader::create(storage_path('challenge.csv'));
+
+        $w=new ExcelReader(storage_path('challenge.csv'), 0);
+        $w->store();
+    }
+);

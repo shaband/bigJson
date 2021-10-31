@@ -13,12 +13,7 @@ use JsonMachine\JsonMachine;
 class Reader extends ReaderAbstract
 {
     protected $data ;
-    public static function rules()
-    {
-        return    [
-            'date_of_birth'=>['nullable',new ValidAgeRule()]
-         ];
-    }
+
     public function __construct(protected string $path, protected int $index)
     {
         $this->path = $path;
@@ -31,24 +26,10 @@ class Reader extends ReaderAbstract
     {
         return  $this->data->getPosition()==filesize($this->path);
     }
-    public function nextIndex():int
-    {
-        return $this->index +1;
-    }
-    public function MakeNext():ReaderContract
-    {
-        return new self($this->path, $this->nextIndex());
-    }
+
+
     public function toArray()
     {
         return iterator_to_array($this->data);
-    }
-
-    public function store():void
-    {
-        $validator=  Validator::make($this->toArray(), self::rules());
-        if (!$validator->fails()) {
-            Account::create($this->toArray());
-        }
     }
 }

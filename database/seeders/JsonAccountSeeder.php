@@ -19,7 +19,7 @@ class JsonAccountSeeder extends Seeder
         DB::table('jobs')->truncate();
         DB::table('failed_jobs')->truncate();
         DB::table('accounts')->truncate();
-        $path=storage_path('challenge.json');
+        $path=storage_path('challenge.csv');
         $reader= app(ReaderAbstract::class, ['path'=>$path, 'index'=>0]);
         dispatch(new AddAcountJob($reader));
     }
