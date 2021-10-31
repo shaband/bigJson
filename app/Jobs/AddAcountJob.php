@@ -2,15 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Account;
-use App\Rules\ValidAgeRule;
 use App\Services\ReaderAbstract;
-use App\Services\RecursionContract;
-use Carbon\Traits\Serialization;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Expr\FuncCall;
 
 class AddAcountJob extends Job
 {
