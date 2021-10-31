@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\ExcelReader;
 use App\Services\Reader;
 use App\Services\ReaderAbstract;
 use App\Services\Validator\AgeValidator;
@@ -104,7 +105,7 @@ $app->configure('queue');
 
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->withEloquent();
-$app->bind(ReaderAbstract::class, Reader::class);
+$app->bind(ReaderAbstract::class, ExcelReader::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

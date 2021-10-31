@@ -1,14 +1,14 @@
 <?php
 
 use App\Jobs\AddAcountJob;
-
+use App\Services\Reader;
 use App\Services\ReaderAbstract;
 use Illuminate\Support\Facades\Queue;
 use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class AddJobTest extends TestCase
+class AddJobTest extends AddJobCreatorTest
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
@@ -20,9 +20,9 @@ class AddJobTest extends TestCase
 
         $this->path=storage_path("challenge.json");
     }
-    public function create_reader($index)
+    public function create_reader($index):ReaderAbstract
     {
-        return       app(ReaderAbstract::class, ['path'=>$this->path, 'index'=>$index]);
+        return       app(Reader::class, ['path'=>$this->path, 'index'=>$index]);
     }
 
     public function test_it_can_read_row()
@@ -59,7 +59,7 @@ class AddJobTest extends TestCase
         $reader=       Mockery::mock(ReaderAbstract::class);
         $reader->shouldReceive('lastIndex')->once()->andReturn(false);
         $reader->shouldReceive('MakeNext')->once()->andReturnSelf();
-        $job=      new AddAcountJob($reader);
+        $job= new AddAcountJob($reader);
         $job->CreateNext();
         Queue::assertPushed(AddAcountJob::class);
     }

@@ -27,17 +27,9 @@ class Reader extends ReaderAbstract
         return  $this->data->getPosition()==filesize($this->path);
     }
 
-  
+
     public function toArray()
     {
         return iterator_to_array($this->data);
-    }
-
-    public function store():void
-    {
-        $validator=  Validator::make($this->toArray(), self::rules());
-        if (!$validator->fails()) {
-            Account::create($this->toArray());
-        }
     }
 }
