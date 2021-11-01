@@ -1,12 +1,10 @@
 <?php
-
-use App\Jobs\AddAcountJob;
-use App\Models\Account;
+namespace  Tests\units\json;
 use App\Services\Reader;
 use App\Services\ReaderAbstract;
-use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Tests\units\AgeCreatorTest;
 
 class AgeTest extends AgeCreatorTest
 {

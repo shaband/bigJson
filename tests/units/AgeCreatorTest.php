@@ -1,4 +1,5 @@
 <?php
+namespace  Tests\units;
 
 use App\Jobs\AddAcountJob;
 use App\Models\Account;
@@ -9,7 +10,7 @@ use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-abstract class AgeCreatorTest extends TestCase
+abstract class AgeCreatorTest extends \TestCase
 {
     use DatabaseMigrations;
     use DatabaseTransactions;

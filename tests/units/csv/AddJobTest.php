@@ -1,15 +1,16 @@
 <?php
+namespace  Tests\units\csv;
 
 use App\Jobs\AddAcountJob;
-use App\Models\Account;
 use App\Services\Reader;
 use App\Services\ReaderAbstract;
 use Illuminate\Support\Facades\Queue;
 use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Tests\units\AddJobCreatorTest;
 
-class CSVAgeTest extends AgeCreatorTest
+class AddJobTest extends AddJobCreatorTest
 {
     use DatabaseMigrations;
     use DatabaseTransactions;
@@ -19,17 +20,10 @@ class CSVAgeTest extends AgeCreatorTest
     {
         parent::setUp();
 
-        $this->path=storage_path("testing.json");
+        $this->path=storage_path("challenge.json");
     }
-
-    /**
-     * create_reader
-     *
-     * @param  mixed $index
-     * @return ReaderAbstract
-     */
     public function create_reader($index):ReaderAbstract
     {
-        return  app(Reader::class, ['path'=>$this->path, 'index'=>$index]);
+        return       app(Reader::class, ['path'=>$this->path, 'index'=>$index]);
     }
 }
