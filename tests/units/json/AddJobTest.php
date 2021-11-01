@@ -1,5 +1,6 @@
 <?php
 
+namespace  Tests\units\json;
 use App\Jobs\AddAcountJob;
 use App\Services\Reader;
 use App\Services\ReaderAbstract;
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Queue;
 use JsonMachine\JsonMachine;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Tests\units\AddJobCreatorTest;
 
 class AddJobTest extends AddJobCreatorTest
 {
@@ -46,7 +48,7 @@ class AddJobTest extends AddJobCreatorTest
     public function test_it_doesnt_continue_if_it_is_the_last_row()
     {
         Queue::fake();
-        $reader=       Mockery::mock(ReaderAbstract::class);
+        $reader=       \Mockery::mock(ReaderAbstract::class);
         $reader->shouldReceive('lastIndex')->once()->andReturn(true);
         $job=      new AddAcountJob($reader);
         $job->CreateNext();
@@ -56,7 +58,7 @@ class AddJobTest extends AddJobCreatorTest
     public function test_it_continue_if_there_is_next()
     {
         Queue::fake();
-        $reader=       Mockery::mock(ReaderAbstract::class);
+        $reader=       \Mockery::mock(ReaderAbstract::class);
         $reader->shouldReceive('lastIndex')->once()->andReturn(false);
         $reader->shouldReceive('MakeNext')->once()->andReturnSelf();
         $job= new AddAcountJob($reader);
