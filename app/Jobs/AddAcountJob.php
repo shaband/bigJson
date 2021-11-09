@@ -3,12 +3,13 @@
 namespace App\Jobs;
 
 use App\Services\ReaderAbstract;
+use App\Services\Readers\Reader;
 
 class AddAcountJob extends Job
 {
     protected $reader;
 
-    public function __construct(ReaderAbstract $reader)
+    public function __construct(Reader $reader)
     {
         $this->reader=$reader;
     }
@@ -23,7 +24,6 @@ class AddAcountJob extends Job
     {
         $this->reader->store();
 
-        $this->CreateNext();
     }
 
     public function CreateNext(): void

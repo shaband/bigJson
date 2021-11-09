@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Source;
 
-use App\Services\Filters\Source\SourceContract;
+use App\Services\Source\SourceContract;
 use Generator;
 use JsonMachine\JsonMachine;
 
@@ -20,10 +20,10 @@ class JsonSource implements SourceContract
     }
     public function generate(string $path): Generator
     {
-        $this->machine::fromFile($path, "/{$this->offset}");
+        $this->JsonMachine= JsonMachine::fromFile($path);
         $this->fileSize=filesize($path);
-        foreach ($this->machine as $item) {
-            yield $item;
+        foreach ($this->JsonMachine as$index=> $item) {
+            yield $index=>$item;
         }
     }
     public function isLast(): bool

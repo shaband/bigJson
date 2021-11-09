@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Factories;
 
-use App\Services\Filters\JsonFilterContract;
+use App\Services\Filters\JsonFilter;
 use App\Services\Readers\Reader;
 use App\Services\Readers\ReaderContract;
 use App\Services\Source\JsonSource;
@@ -15,7 +15,7 @@ class JsonReaderFactory implements ReaderFactoryContract
     {
         return new Reader(
             $this,
-            new JsonFilterContract(),
+            new JsonFilter(),
             new JsonSource()
         );
     }

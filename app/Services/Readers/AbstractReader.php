@@ -17,8 +17,8 @@ abstract class AbstractReader implements ReaderContract
 
     protected SourceContract $source;
 
-    protected int $index=0;
     protected string $filePath;
+
     public function __construct(ReaderFactoryContract $factory, FilterContract $filter, SourceContract $source)
     {
         $this->factory = $factory;
@@ -37,9 +37,7 @@ abstract class AbstractReader implements ReaderContract
     {
         $this->source->setOffset($this->index);
         $generator= $this->source->generate($this->filePath, $this->index);
-        $generator->current();
-        $this->store();
-        $this->MakeNext();
+        $this->data = $generator->current();
     }
     public function nextIndex():int
     {
@@ -48,7 +46,7 @@ abstract class AbstractReader implements ReaderContract
 
     public function MakeNext(): ReaderContract
     {
-        return $this->factory->make();
+        return  $this->factory->make();
     }
 
     public function lastIndex(): bool

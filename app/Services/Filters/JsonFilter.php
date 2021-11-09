@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Filters;
 
-class JsonFilterContract implements FilterContract
+class JsonFilter implements FilterContract
 {
     /**
      * @param array $data
